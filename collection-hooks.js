@@ -5,7 +5,7 @@
 
 var advices = {};
 var currentUserId;
-var constructor = Meteor.Collection;
+var constructor = Meteor.Collection2;
 
 function getUserId() {
   var userId;
@@ -112,13 +112,13 @@ CollectionHooks.getDocs = function (collection, selector, options) {
   return collection.find(selector, findOptions);
 };
 
-Meteor.Collection = function () {
+Meteor.Collection2 = function () {
   var ret = constructor.apply(this, arguments);
   CollectionHooks.extendCollectionInstance(this);
   return ret;
 };
 
-Meteor.Collection.prototype = Object.create(constructor.prototype);
+Meteor.Collection2.prototype = Object.create(constructor.prototype);
 
 for (var func in constructor) {
   if (constructor.hasOwnProperty(func)) {
